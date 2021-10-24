@@ -32,7 +32,7 @@ class CultureController extends Controller
     public function create()
     {
         return view('admin.pages.culture.create',[
-            'title' => 'Tambah Wisata'
+            'title' => 'Tambah Kebudayaan'
         ]);
     }
 

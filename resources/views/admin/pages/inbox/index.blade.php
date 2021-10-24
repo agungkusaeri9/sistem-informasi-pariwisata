@@ -21,7 +21,7 @@
                                 <th>Isi</th>
                                 <th>Status</th>
                                 <th>Tanggal</th>
-                                <th>Aksi</th>
+                                <th style="min-width:140px">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

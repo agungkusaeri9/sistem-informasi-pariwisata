@@ -42,6 +42,15 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="description">Deskripsi</label>
+                            <textarea name="description" id="description" cols="30" rows="3" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                            @error('description')
+                                <div class="is-invalid">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="image">Gambar</label>
                             <input type="file" name="image[]" class="form-control @error('image') is-invalid @enderror" id="image" value="{{ old('image') }}" multiple>
                             @error('image')

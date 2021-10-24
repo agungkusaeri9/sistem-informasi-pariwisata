@@ -13,24 +13,28 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name' => 'kuliner',
+            'name' => 'Kuliner',
             'slug' => 'kuliner'
         ]);
         Category::create([
-            'name' => 'kebudayaan',
+            'name' => 'Kebudayaan',
             'slug' => 'kebudayaan'
         ]);
         Category::create([
-            'name' => 'wisata',
+            'name' => 'Wisata',
             'slug' => 'wisata'
         ]);
         Category::create([
-            'name' => 'event',
+            'name' => 'Event',
             'slug' => 'event'
         ]);
         Category::create([
-            'name' => 'tiket',
+            'name' => 'Tiket',
             'slug' => 'tiket'
         ]);
-    }
+
+        Category::create([
+            'name' => 'Berita',
+            'slug' => 'berita'
+        ]);    }
 }

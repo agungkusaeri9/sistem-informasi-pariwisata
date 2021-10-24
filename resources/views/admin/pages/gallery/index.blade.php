@@ -19,6 +19,7 @@
                                 <th>Nama</th>
                                 <th>Kategori</th>
                                 <th>Lokasi</th>
+                                <th>Deskripsi</th>
                                 <th class="text-center" style="width:80px">Aksi</th>
                             </tr>
                         </thead>
@@ -30,6 +31,7 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->category->name }}</td>
                                 <td>{{ $item->location }}</td>
+                                <td>{{ $item->description }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.galleries.edit',$item->id) }}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
                                     <form action="{{ route('admin.galleries.destroy',$item->id) }}" method="post" class="d-inline">

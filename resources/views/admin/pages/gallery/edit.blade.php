@@ -24,7 +24,7 @@
                             <label for="category_id">Kategori</label>
                             <select name="category_id" id="category_id" class="form-control  @error('category_id') is-invalid @enderror">
                                 @foreach ($categories as $category)
-                                <option @if($category->id == $item->category_id) selecetd @endif value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option @if($category->id == $item->category_id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
                             @error('category_id')
@@ -37,6 +37,15 @@
                             <label for="location">Lokasi</label>
                             <input type="text" name="location" class="form-control @error('location') is-invalid @enderror" id="location" value="{{ $item->location ?? old('location') }}">
                             @error('location')
+                                <div class="is-invalid">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Deskripsi</label>
+                            <textarea name="description" id="description" cols="30" rows="3" class="form-control @error('description') is-invalid @enderror">{{ $item->description ?? old('description') }}</textarea>
+                            @error('description')
                                 <div class="is-invalid">
                                     {{ $message }}
                                 </div>

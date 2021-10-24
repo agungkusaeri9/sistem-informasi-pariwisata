@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/login', 301);
 
 Auth::routes();
 
@@ -26,7 +25,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('users', UserController::class)->except('show');
 
         // categories
-        Route::get('/categories','CategoryController@index')->name('categories.index');
+        Route::get('/categories','CategoryController@store')->name('categories.index');
 
         // culinaries
         Route::resource('culinaries', CulinaryController::class)->except('show');
@@ -46,6 +45,9 @@ Route::middleware(['auth'])->group(function () {
         // galleries
         Route::resource('galleries', GalleryController::class)->except('show');
 
+        // videos
+        Route::resource('videos', VideoController::class);
+
         // events
         Route::resource('events', EventController::class)->except('show');
 
@@ -59,3 +61,46 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('evaluations/{id}', 'EvaluationController@destroy')->name('evaluations.destroy');
     });
 });
+
+Route::get('/', 'HomeController')->name('home');
+
+// wisata
+Route::get('/wisata', 'TourController@index')->name('tour.index');
+Route::get('/wisata/{slug}', 'TourController@show')->name('tour.show');
+
+// berita
+Route::get('/berita', 'NewsController@index')->name('news.index');
+Route::get('/berita/{slug}', 'NewsController@show')->name('news.show');
+
+// kuliner
+Route::get('/kuliner', 'CulinaryController@index')->name('culinary.index');
+Route::get('/kuliner/{slug}', 'CulinaryController@show')->name('culinary.show');
+
+// tiket
+Route::get('/tiket', 'TicketController@index')->name('ticket.index');
+Route::get('/tiket/{slug}', 'TicketController@show')->name('ticket.show');
+
+// kebudayaan
+Route::get('/kebudayaan', 'CultureController@index')->name('culture.index');
+Route::get('/kebudayaan/{slug}', 'CultureController@show')->name('culture.show');
+
+// acara
+Route::get('/event', 'EventController@index')->name('event.index');
+Route::get('/event/{slug}', 'EventController@show')->name('event.show');
+
+// galeri
+Route::get('/galeri/foto', 'GalleryController@index')->name('gallery.index');
+
+// videos
+Route::get('/galeri/video', 'VideoController@index')->name('videos.index');
+Route::get('/galeri/video/{slug}', 'VideoController@show')->name('videos.show');
+
+// about
+Route::get('/about', 'AboutController@index')->name('about');
+
+// kontak
+Route::get('/contact', 'ContactController@index')->name('contact');
+Route::post('/contact', 'ContactController@store')->name('contact.store');
+
+// Penilaian
+Route::post('evaluation', 'EvaluationController@store')->name('evaluation.store');

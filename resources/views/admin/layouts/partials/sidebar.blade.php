@@ -78,14 +78,29 @@
               </li>
             </ul>
           </li>
-          <li class="nav-header">GALERI FOTO</li>
+          <li class="nav-header">GALERI</li>
           <li class="nav-item">
-            <a href="{{ route('admin.galleries.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-image"></i>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-photo-video"></i>
               <p>
-                Gallery
+                GALERI
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('admin.galleries.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Foto</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.videos.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Video</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-header">PESAN MASUK</li>
           <li class="nav-item">

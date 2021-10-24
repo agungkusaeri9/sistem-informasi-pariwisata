@@ -26,4 +26,18 @@ class Culture extends Model
 
         return $score;
     }
+
+    public function countComment($category_id,$content_id)
+    {
+        $evaluation_total = Evaluation::where('category_id',$category_id)->where('content_id',$content_id)->count();
+
+        return $evaluation_total;
+    }
+
+    public function getComments($category_id,$content_id)
+    {
+        $comments = Evaluation::where('category_id',$category_id)->where('content_id',$content_id)->latest()->get();
+
+        return $comments;
+    }
 }
