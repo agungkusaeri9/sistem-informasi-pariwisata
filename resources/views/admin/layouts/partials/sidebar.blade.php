@@ -1,149 +1,95 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Pariwisata</span>
-    </a>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{{ auth()->user()->avatar() }}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="{{ route('admin.profile.show') }}" class="d-block">{{ auth()->user()->name }}</a>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="{{ route('admin.dashboard') }}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Pariwisata</div>
             </a>
-          </li>
-          <li class="nav-header">ADMIN</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-folder"></i>
-              <p>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
                 DATA
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('admin.news.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Berita</p>
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data</span>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('admin.cultures.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kebudayaan</p>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('admin.events.index') }}">Acara</a>
+                        <a class="collapse-item" href="{{ route('admin.news.index') }}">Berita</a>
+                        <a class="collapse-item" href="{{ route('admin.cultures.index') }}">Kebudayaan</a>
+                        <a class="collapse-item" href="{{ route('admin.culinaries.index') }}">Kuliner</a>
+                        <a class="collapse-item" href="{{ route('admin.tickets.index') }}">Tiket</a>
+                        <a class="collapse-item" href="{{ route('admin.tours.index') }}">Wisata</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                DATA GALERI
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#gallery"
+                    aria-expanded="true" aria-controls="gallery">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Galeri</span>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('admin.events.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Acara</p>
+                <div id="gallery" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('admin.galleries.index') }}">Foto</a>
+                        <a class="collapse-item" href="{{ route('admin.videos.index') }}">Video</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                DATA MASTER
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Master</span>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('admin.culinaries.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kuliner</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('admin.tickets.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tiket</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('admin.tours.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Wisata</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-header">GALERI</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-photo-video"></i>
-              <p>
-                GALERI
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('admin.galleries.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Foto</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('admin.videos.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Video</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-header">PESAN MASUK</li>
-          <li class="nav-item">
-            <a href="{{ route('admin.inboxes.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-folder"></i>
-              <p>
-                Pesan Masuk
-              </p>
-            </a>
-          </li>
-          <li class="nav-header">DATA MASTER</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-folder"></i>
-              <p>
-                MASTER
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('admin.users.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>User</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('admin.categories.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kategori</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('admin.evaluations.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Penilaian</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('admin.users.index') }}">User</a>
+                        <a class="collapse-item" href="{{ route('admin.categories.index') }}">Kategori</a>
+                        <a class="collapse-item" href="{{ route('admin.evaluations.index') }}">Penilaian</a>
+                    </div>
+                </div>
+            </li>
+
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
         </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-</aside>

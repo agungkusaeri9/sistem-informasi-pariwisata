@@ -25,7 +25,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('users', UserController::class)->except('show');
 
         // categories
-        Route::get('/categories','CategoryController@store')->name('categories.index');
+        Route::get('/categories','CategoryController@index')->name('categories.index');
 
         // culinaries
         Route::resource('culinaries', CulinaryController::class)->except('show');

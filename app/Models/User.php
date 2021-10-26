@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function avatar(){
         if($this->avatar == NULL){
-            return asset('assets/dist/img/user2-160x160.jpg');
+            return asset('assets/sbadmin2/img/undraw_profile.svg');
         }else{
             return asset('storage/'.$this->avatar);
         }

@@ -3,103 +3,80 @@
     Register
 @endsection
 @section('content')
-<div class="register-box">
-    <div class="register-logo">
-      <a href="#">Register</a>
-    </div>
-  
-    <div class="card">
-      <div class="card-body register-card-body">
-        <p class="login-box-msg">Register a new membership</p>
-  
-        <form action="{{ route('register') }}" method="post">
-            @csrf
-          <div class="input-group mb-3">
-            <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Full name" name="name" value="{{ old('name') }}">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-user"></span>
+<div class="container">
+
+  <div class="card o-hidden border-0 shadow-lg my-5 col-md-5 mx-auto">
+      <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row mx-auto">
+              <div class="col-lg-12">
+                  <div class="p-5">
+                      <div class="text-center">
+                          <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                      </div>
+                      <form class="user" action="{{ route('register') }}" method="post">
+                        @csrf
+                          <div class="form-group">
+                              <input type="text" class="form-control @error('name') is-invalid @enderror form-control-user" id="name"
+                                  placeholder="Full Name" name="name" value="{{ old('name') }}">
+                                @error('name')
+                                <div class="invalid-feedback">
+                                  {{ $message }}
+                                </div>
+                                @enderror
+                          </div>
+                          <div class="form-group">
+                            <input type="text" class="form-control @error('username') is-invalid @enderror form-control-user" id="username"
+                                placeholder="Username" name="username" value="{{ old('username') }}">
+                              @error('username')
+                              <div class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                              @enderror
+                        </div>
+                          <div class="form-group">
+                              <input type="email" class="form-control @error('email') is-invalid @enderror form-control-user" id="exampleInputEmail"
+                                  placeholder="Email Address" name="email" value="{{ old('email') }}">
+                              @error('email')
+                              <div class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                              @enderror
+                          </div>
+                          <div class="form-group row">
+                              <div class="col-sm-6 mb-3 mb-sm-0">
+                                  <input type="password" class="form-control @error('password') is-invalid @enderror form-control-user"
+                                      id="exampleInputPassword" placeholder="Password" name="password">
+                                    @error('password')
+                                    <div class="invalid-feedback">
+                                      {{ $message }}
+                                    </div>
+                                    @enderror
+                              </div>
+                              <div class="col-sm-6">
+                                  <input type="password" class="form-control form-control-user"
+                                      id="exampleRepeatPassword" placeholder="Repeat Password" name="password_confirmation">
+                                    @error('password_confirmation')
+                                    <div class="invalid-feedback">
+                                      {{ $message }}
+                                    </div>
+                                    @enderror
+                              </div>
+                          </div>
+                          <button type="submit" class="btn btn-primary btn-user btn-block">
+                              Register Account
+                          </button>
+                          <hr>
+                      </form>
+                      <hr>
+                      <div class="text-center">
+                          <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
+                      </div>
+                  </div>
               </div>
-            </div>
-            @error('name')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
           </div>
-          <div class="input-group mb-3">
-            <input type="text" class="form-control @error('username') is-invalid @enderror" placeholder="Username" name="username" value="{{ old('username') }}">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-user"></span>
-              </div>
-            </div>
-            @error('username')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-          </div>
-          <div class="input-group mb-3">
-            <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
-              </div>
-            </div>
-            @error('email')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-          </div>
-          <div class="input-group mb-3">
-            <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
-            @error('password')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-          </div>
-          <div class="input-group mb-3">
-            <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Retype password" name="password_confirmation">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
-            @error('password_confirmation')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-            @enderror
-          </div>
-          <div class="row">
-            <div class="col-8">
-              <div class="icheck-primary">
-                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                <label for="agreeTerms">
-                 I agree to the <a href="#">terms</a>
-                </label>
-              </div>
-            </div>
-            <!-- /.col -->
-            <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Register</button>
-            </div>
-            <!-- /.col -->
-          </div>
-        </form>
-  
-        <a href="{{ route('login') }}" class="text-center">I already have a membership</a>
       </div>
-      <!-- /.form-box -->
-    </div><!-- /.card -->
   </div>
-  <!-- /.register-box -->
+
+</div>
 @endsection

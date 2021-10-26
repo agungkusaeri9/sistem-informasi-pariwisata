@@ -58,11 +58,11 @@
 @endsection
 @push('styles')
 <!-- summernote -->
-<link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/sbadmin2/summernote/summernote-bs4.min.css') }}">
 @endpush
 @push('scripts')
 <!-- Summernote -->
-<script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
+<script src="{{ asset('assets/sbadmin2/summernote/summernote-bs4.min.js') }}"></script>
 <script>
     $(function(){
         $('#text').summernote({

@@ -30,6 +30,9 @@ class Evaluation extends Model
         }else if($category_id == 5)
         {
             $content = Ticket::findOrFail($content_id)->name;
+        }else if($category_id == 6)
+        {
+            $content = News::findOrFail($content_id)->title;
         }
         
         return $content;
