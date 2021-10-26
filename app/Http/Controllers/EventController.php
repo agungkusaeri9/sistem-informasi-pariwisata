@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class EventController extends Controller
         $items = Event::latest()->paginate(12);
         return view('frontend.pages.event.index',[
             'title' => 'Event',
-            'items' => $items
+            'items' => $items,
+            'category' => Category::findOrFail(4)
         ]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Culture;
 use Illuminate\Http\Request;
 
@@ -11,8 +12,9 @@ class CultureController extends Controller
     {
         $items = Culture::latest()->paginate(12);
         return view('frontend.pages.culture.index',[
-            'title' => 'Kuliner',
-            'items' => $items
+            'title' => 'Kebudayaan',
+            'items' => $items,
+            'category' => Category::findOrFail(2)
         ]);
     }
 

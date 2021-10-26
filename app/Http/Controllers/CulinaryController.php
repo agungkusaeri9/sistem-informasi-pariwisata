@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Culinary;
 use Illuminate\Http\Request;
 
@@ -9,10 +10,11 @@ class CulinaryController extends Controller
 {
     public function index()
     {
-        $items = Culinary::latest()->paginate(12);
+        $items = Culinary::with('category')->latest()->paginate(12);
         return view('frontend.pages.culinary.index',[
             'title' => 'Kuliner',
-            'items' => $items
+            'items' => $items,
+            'category' => Category::findOrFail(1)
         ]);
     }
 

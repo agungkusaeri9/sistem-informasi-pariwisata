@@ -34,6 +34,11 @@ class Event extends Model
         return $evaluation_total;
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function getComments($category_id,$content_id)
     {
         $comments = Evaluation::where('category_id',$category_id)->where('content_id',$content_id)->latest()->get();

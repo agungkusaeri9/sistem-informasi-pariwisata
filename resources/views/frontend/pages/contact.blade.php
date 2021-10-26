@@ -21,7 +21,7 @@
                     <span class="icon-map-signs"></span>
                 </div>
                 <h3 class="mb-4">Address</h3>
-              <p>Pidie Jaya,Nanggroe Aceh Darussalam, Indonesia</p>
+              <p>{{ $setting->address }}</p>
             </div>
         </div>
         <div class="col-md-3 d-flex">
@@ -30,7 +30,7 @@
                     <span class="icon-phone2"></span>
                 </div>
                 <h3 class="mb-4">Contact Number</h3>
-              <p><a href="tel://1234567920">+62 812 634 235 38</a></p>
+              <p><a href="tel://1234567920">{{ $setting->phone_number }}</a></p>
             </div>
         </div>
         <div class="col-md-3 d-flex">
@@ -39,7 +39,7 @@
                     <span class="icon-paper-plane"></span>
                 </div>
                 <h3 class="mb-4">Email Address</h3>
-              <p><a href="mailto:info@yoursite.com">almadani279@gmail.com</a></p>
+              <p><a href="mailto:info@yoursite.com">{{ $setting->email }}</a></p>
             </div>
         </div>
         <div class="col-md-3 d-flex">
@@ -48,7 +48,7 @@
                     <span class="icon-globe"></span>
                 </div>
                 <h3 class="mb-4">Website</h3>
-              <p><a href="#">Pariwisata Pidie Jaya</a></p>
+              <p><a href="#">{{ $setting->name }}</a></p>
             </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
         </div>
 
         <div class="col-md-6 d-flex">
-            <div id="map" class="bg-white"></div>
+          <iframe src="https://www.google.com/maps/embed?pb={{ $setting->map }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
       </div>
     </div>

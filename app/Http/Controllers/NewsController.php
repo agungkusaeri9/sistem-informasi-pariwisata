@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class NewsController extends Controller
         $items = News::latest()->paginate(12);
         return view('frontend.pages.news.index',[
             'title' => 'Berita',
-            'items' => $items
+            'items' => $items,
+            'category' => Category::findOrFail(6)
         ]);
     }
 

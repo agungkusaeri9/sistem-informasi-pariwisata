@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class TicketController extends Controller
         $items = Ticket::latest()->paginate(12);
         return view('frontend.pages.ticket.index',[
             'title' => 'Tiket',
-            'items' => $items
+            'items' => $items,
+            'category' => Category::findOrFail(5)
         ]);
     }
 

@@ -62,7 +62,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Category::findOrFail($id);
+        return view('admin.pages.category.edit',[
+            'title' => 'Edit Kategori',
+            'item' => $item
+        ]);
     }
 
     /**
@@ -74,7 +78,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'name' => ['required'],
+            'image' => ['image','mimes:jpg,jpeg,png']
+        ]);
+
+        $item = Category::findOrFail($id);
+        if(request()->file('image'))
+        {
+            $image = request()->file('image')->store('category','public');
+        }else{
+            $image = NULL;
+        }
+        $item->update([
+            'name' => request('name'),
+            'image' => $image
+        ]);
+
+        return redirect()->route('admin.categories.index')->with('success','Kategori berhasil disimpan');
     }
 
     /**

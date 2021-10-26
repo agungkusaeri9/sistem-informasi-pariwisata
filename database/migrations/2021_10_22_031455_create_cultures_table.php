@@ -16,7 +16,7 @@ class CreateCulturesTable extends Migration
         Schema::create('cultures', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('category_id')->default(3)->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('category_id')->default(2)->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('slug');
             $table->text('description');
             $table->string('location');

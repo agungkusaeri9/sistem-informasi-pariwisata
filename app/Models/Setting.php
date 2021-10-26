@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Setting extends Model
 {
+    protected $table = 'setting';
     protected $guarded = ['id'];
 
-    public function image()
+    public function logo()
     {
-        if($this->image)
+        if($this->logo)
         {
-            return asset('storage/' . $this->image);
+            return asset('storage/' . $this->logo);
         }else{
             return "";
         }

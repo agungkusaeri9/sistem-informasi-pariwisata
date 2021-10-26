@@ -14,16 +14,24 @@
                         <thead>
                             <tr>
                                 <th  style="width:20px">No</th>
+                                <th>Gambar</th>
                                 <th>Nama</th>
                                 <th>Slug</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
+                                <td>
+                                    <img src="{{ $item->image() }}" alt="" height="100" width="100">
+                                </td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->slug }}</td>
+                                <td>
+                                    <a href="{{ route('admin.categories.edit', $item->id) }}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -38,7 +46,6 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('assets/sbadmin2/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/sbadmin2/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/sbadmin2/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 <!-- Toastr -->
 <link rel="stylesheet" href="{{ asset('assets/sbadmin2/toastr/toastr.min.css') }}">
 @endpush

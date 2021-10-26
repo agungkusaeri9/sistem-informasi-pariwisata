@@ -32,6 +32,11 @@ class Tour extends Model
         return $score;
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function countComment($category_id,$content_id)
     {
         $evaluation_total = Evaluation::where('category_id',$category_id)->where('content_id',$content_id)->count();

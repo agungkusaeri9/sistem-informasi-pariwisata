@@ -40,4 +40,9 @@ class News extends Model
 
         return $comments;
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

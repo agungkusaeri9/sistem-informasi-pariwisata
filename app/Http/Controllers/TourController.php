@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Tour;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class TourController extends Controller
         $items = Tour::latest()->paginate(12);
         return view('frontend.pages.tour.index',[
             'title' => 'Destinasi Wisata',
-            'items' => $items
+            'items' => $items,
+            'category' => Category::findOrFail(3)
         ]);
     }
 

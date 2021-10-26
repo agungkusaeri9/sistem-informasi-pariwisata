@@ -2,11 +2,10 @@
 
 namespace App\View\Components;
 
-use App\Models\Category;
 use App\Models\Setting;
 use Illuminate\View\Component;
 
-class Footer extends Component
+class Navbar extends Component
 {
     /**
      * Create a new component instance.
@@ -25,9 +24,7 @@ class Footer extends Component
      */
     public function render()
     {
-        $categories = Category::orderBy('name','ASC')->get();
-        return view('components.footer',[
-            'categories' => $categories,
+        return view('components.navbar',[
             'setting' => Setting::first()
         ]);
     }

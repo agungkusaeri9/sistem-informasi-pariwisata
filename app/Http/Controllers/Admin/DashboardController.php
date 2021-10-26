@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Culinary;
 use App\Models\Culture;
+use App\Models\Evaluation;
 use App\Models\Event;
 use App\Models\Inbox;
 use App\Models\News;
 use App\Models\Ticket;
 use App\Models\Tour;
 use App\Models\User;
+use Egulias\EmailValidator\Warning\Comment;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -33,9 +35,11 @@ class DashboardController extends Controller
             'ticket' => Ticket::count(),
             'admin' => User::count()
         ];
+        $latest_comments = Evaluation::latest()->limit(10)->get();
         return view('admin.pages.dashboard',[
             'title' => 'Dashboard',
-            'count' => $count
+            'count' => $count,
+            'latest_comments' => $latest_comments
         ]);
     }
 }

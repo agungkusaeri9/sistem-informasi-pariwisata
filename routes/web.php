@@ -24,8 +24,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/profile', 'ProfileController@update')->name('profile.update');
         Route::resource('users', UserController::class)->except('show');
 
+        // setting
+        Route::get('setting', 'SettingController@index')->name('setting.index');
+        Route::patch('setting', 'SettingController@update')->name('setting.update');
+
         // categories
         Route::get('/categories','CategoryController@index')->name('categories.index');
+        Route::get('/categories/{id}/edit','CategoryController@edit')->name('categories.edit');
+        Route::patch('/categories/{id}/edit','CategoryController@update')->name('categories.update');
 
         // culinaries
         Route::resource('culinaries', CulinaryController::class)->except('show');
