@@ -52,7 +52,6 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('assets/sbadmin2/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/sbadmin2/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/sbadmin2/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 <!-- Toastr -->
 <link rel="stylesheet" href="{{ asset('assets/sbadmin2/toastr/toastr.min.css') }}">
 @endpush
