@@ -22,8 +22,8 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         $tours = Tour::latest()->limit(4)->get();
-        $cultures = Culture::limit(6)->get();
-        $culinaries = Culinary::limit(6)->get();
+        $cultures = Culture::limit(4)->get();
+        $culinaries = Culinary::limit(4)->get();
         $inboxes = Inbox::where('status',1)->limit(4)->get();
         $count = [
             'tour' => Tour::count(),

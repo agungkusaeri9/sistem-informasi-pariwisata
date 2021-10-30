@@ -1,7 +1,6 @@
 <div class="container">
     <nav class="row navbar navbar-expand-lg navbar-light bg-white">
         <a href="#" class="navbar-brand" style="background: none">
-            {{-- <img src="http://noprob.my.id/frontend/images/logo_noprob.png" alt="Logo Noprob" /> --}}
             Aceh Pedia
         </a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -14,10 +13,10 @@
                     <a href="{{ route('home') }}" class="nav-link active">Home</a>
                 </li>
                 <li class="nav-item mx-md-2">
-                    <a href="#" class="nav-link">Acara</a>
+                    <a href="{{ route('event.index') }}" class="nav-link">Acara</a>
                 </li>
                 <li class="nav-item mx-md-2">
-                    <a href="#" class="nav-link">Berita</a>
+                    <a href="{{ route('news.index') }}" class="nav-link">Berita</a>
                 </li>
                 <li class="nav-item mx-md-2 dropdown">
                     <a href="" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
@@ -29,13 +28,13 @@
                     </div>
                 </li>
                 <li class="nav-item mx-md-2">
-                    <a href="#" class="nav-link">Kebudayaan</a>
+                    <a href="{{ route('culture.index') }}" class="nav-link">Kebudayaan</a>
                 </li>
                 <li class="nav-item mx-md-2">
-                    <a href="#" class="nav-link">Kuliner</a>
+                    <a href="{{ route('culinary.index') }}" class="nav-link">Kuliner</a>
                 </li>
                 <li class="nav-item mx-md-2">
-                    <a href="#" class="nav-link">Tiket</a>
+                    <a href="{{ route('ticket.index') }}" class="nav-link">Tiket</a>
                 </li>
                 <li class="nav-item mx-md-2">
                     <a href="#" class="nav-link">Wisata</a>
