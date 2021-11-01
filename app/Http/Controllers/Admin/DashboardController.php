@@ -32,7 +32,6 @@ class DashboardController extends Controller
             'culture' => Culture::count(),
             'inbox' => Inbox::count(),
             'tour' => Tour::count(),
-            'ticket' => Ticket::count(),
             'admin' => User::count()
         ];
         $latest_comments = Evaluation::latest()->limit(10)->get();
