@@ -11,7 +11,7 @@
         <br />
         moment you never see before
     </p>
-    <a href="#popular" class="btn btn-get-started px-4 mt-4">
+    <a href="javascript:void(0)" class="btn btn-get-started px-4 mt-4">
         Get started
     </a>
 </header>
@@ -19,16 +19,16 @@
     <div class="container" data-aos="zoom-in">
         <section class="section-stats row justify-content-center " id="stats">
             <div class="col-3 col-md-2 stats-detail">
-                <h2>{{ $count['culinary'] }}</h2>
-                <p>Kuliner</p>
+                <h2>{{ $count['news'] }}</h2>
+                <p>Berita</p>
             </div>
             <div class="col-3 col-md-2 stats-detail">
                 <h2>{{ $count['culture'] }}</h2>
-                <p>Kebudayaan</p>
+                <p>Budaya</p>
             </div>
             <div class="col-3 col-md-2 stats-detail">
-                <h2>{{ $count['ticket'] }}</h2>
-                <p>Tiket</p>
+                <h2>{{ $count['culinary'] }}</h2>
+                <p>Kuliner</p>
             </div>
             <div class="col-3 col-md-2 stats-detail">
                 <h2>{{ $count['tour'] }}</h2>
@@ -60,7 +60,7 @@
                         <div class="travel-country">{{ $tour->location }}</div>
                         <div class="travel-location">{{ $tour->name }}</div>
                         <div class="travel-button mt-auto">
-                            <a href=""
+                            <a href="{{ route('tour.show',$tour->slug) }}"
                                 class="btn btn-travel-details px-4">
                                 View Details
                             </a>
@@ -95,7 +95,7 @@
                         <div class="travel-country">{{ $culinary->location }}</div>
                         <div class="travel-location">{{ $culinary->name }}</div>
                         <div class="travel-button mt-auto">
-                            <a href=""
+                            <a href="{{ route('culinary.show',$culinary->slug) }}"
                                 class="btn btn-travel-details px-4">
                                 View Details
                             </a>
@@ -110,7 +110,7 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center section-popular-heading">
-                    <h2>Kebudayaan</h2>
+                    <h2>Budaya</h2>
                     <p>
                         Something that you never try
                         <br />
@@ -130,7 +130,7 @@
                         <div class="travel-country">{{ $culture->location }}</div>
                         <div class="travel-location">{{ $culture->name }}</div>
                         <div class="travel-button mt-auto">
-                            <a href=""
+                            <a href="{{ route('culture.show',$culture->slug) }}"
                                 class="btn btn-travel-details px-4">
                                 View Details
                             </a>
@@ -174,6 +174,23 @@
             </div>
         </div>
     </section>
+
+    <section class="section section-testimonial-content" style="margin-top: 20px">
+        <div class="container">
+            <div class="section-populer-travel row justify-content-center">
+                <div class="col-md-4">
+                    <h2>{{ $latest_video->name }}</h2>
+                    <h5>{{ $latest_video->category->name }}</h5>
+                    <p>{{ $latest_video->description }}</p>
+                </div>
+                <div class="col-md-8">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{ $latest_video->url() }}" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 @endsection
 @push('styles')
@@ -181,5 +198,19 @@
     header{
         background-image: url("{{ asset('assets/frontend/images/bg_2.jpg') }}");
     }
+    @media (max-width:567px){
+        .stats-detail p{
+            font-size: 12px;
+        }
+    }
 </style>
+<link rel="stylesheet" href="{{ asset('assets/frontend/toastr/toastr.min.css') }}">
+@endpush
+@push('scripts')
+<script src="{{ asset('assets/frontend/toastr/toastr.min.js') }}"></script>
+@if (session('success'))
+<script>
+    toastr.success('{{ session('success') }}', 'Success !')
+</script>
+@endif
 @endpush

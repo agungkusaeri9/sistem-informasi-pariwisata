@@ -1,8 +1,8 @@
 @extends('frontend.layouts.app')
 @section('content')
-<header class="text-center" style="margin-bottom: -70px;background-image: url({{ $category->image() }})">
+<header class="text-center" style="margin-bottom: -70px;background-image: url({{ asset('assets/frontend/images/bg_2.jpg') }})">
     <h1>
-        Budaya
+        Galeri Foto
     </h1>
 </header>    
 <section class="section-popular-content" id="popularContent">
@@ -15,7 +15,7 @@
                     <div class="travel-country">{{ $item->location }}</div>
                     <div class="travel-location">{{ $item->name }}</div>
                     <div class="travel-button mt-auto">
-                        <a href="{{ route('culture.show', $item->slug) }}"
+                        <a href="{{ route('gallery.show',$item->id) }}"
                             class="btn btn-travel-details px-4">
                             View Details
                         </a>

@@ -107,9 +107,9 @@
                         <h2>Informasi</h2>
                         <table class="trip-informations">
                             <tr>
-                                <th width="50%">Harga</th>
+                                <th width="50%">Lokasi</th>
                                 <td width="50%" class="text-right">
-                                   Rp {{ number_format($item->price) }}
+                                    {{ $item->location }}
                                 </td>
                             </tr>
                             <tr>
@@ -125,7 +125,7 @@
                         </table>
                     </div>
                     <div class="join-container">
-                        <span class="p-2 btn btn-block rounded-0 btn-secondary mt-3 py-2">Tiket</span>
+                        <span class="p-2 btn btn-block rounded-0 btn-secondary mt-3 py-2">Wisata</span>
                     </div>
                 </div>
             </div>

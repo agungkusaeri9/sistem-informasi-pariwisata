@@ -13,7 +13,7 @@
                     <table id="table" class="table table-bordered table-hover w-100">
                         <thead>
                             <tr>
-                                <th  style="width:20px">No</th>
+                                <th  style="width:20px">ID</th>
                                 <th>Gambar</th>
                                 <th>Nama</th>
                                 <th>Slug</th>
@@ -23,7 +23,7 @@
                         <tbody>
                             @foreach ($items as $item)
                             <tr>
-                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $item->id }}</td>
                                 <td>
                                     <img src="{{ $item->image() }}" alt="" height="100" width="100">
                                 </td>

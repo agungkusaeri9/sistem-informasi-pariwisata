@@ -7,8 +7,10 @@ use App\Models\Culture;
 use App\Models\Event;
 use App\Models\Gallery;
 use App\Models\Inbox;
+use App\Models\News;
 use App\Models\Ticket;
 use App\Models\Tour;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,16 +31,18 @@ class HomeController extends Controller
             'tour' => Tour::count(),
             'culinary' => Culinary::count(),
             'culture' => Culture::count(),
-            'ticket' => Ticket::count(),
+            'news' => News::count(),
             'event' => Event::count()
         ];
+        $latest_video = Video::latest()->first();
         return view('frontend.pages.home',[
             'title' => 'Home',
             'tours' => $tours,
             'cultures' => $cultures,
             'culinaries' => $culinaries,
             'count' => $count,
-            'inboxes' => $inboxes
+            'inboxes' => $inboxes,
+            'latest_video' => $latest_video
         ]);
     }
 }

@@ -39,9 +39,6 @@ Route::middleware(['auth'])->group(function () {
         // tours
          Route::resource('tours', TourController::class)->except('show');
 
-        // tickets
-        Route::resource('tickets', TicketController::class)->except('show');
-
         // cultures
         Route::resource('cultures', CultureController::class)->except('show');
 
@@ -82,13 +79,10 @@ Route::get('/berita/{slug}', 'NewsController@show')->name('news.show');
 Route::get('/kuliner', 'CulinaryController@index')->name('culinary.index');
 Route::get('/kuliner/{slug}', 'CulinaryController@show')->name('culinary.show');
 
-// tiket
-Route::get('/tiket', 'TicketController@index')->name('ticket.index');
-Route::get('/tiket/{slug}', 'TicketController@show')->name('ticket.show');
 
 // kebudayaan
-Route::get('/kebudayaan', 'CultureController@index')->name('culture.index');
-Route::get('/kebudayaan/{slug}', 'CultureController@show')->name('culture.show');
+Route::get('/budaya', 'CultureController@index')->name('culture.index');
+Route::get('/budaya/{slug}', 'CultureController@show')->name('culture.show');
 
 // acara
 Route::get('/event', 'EventController@index')->name('event.index');
@@ -96,6 +90,7 @@ Route::get('/event/{slug}', 'EventController@show')->name('event.show');
 
 // galeri
 Route::get('/galeri/foto', 'GalleryController@index')->name('gallery.index');
+Route::get('/galeri/foto/{id}', 'GalleryController@show')->name('gallery.show');
 
 // videos
 Route::get('/galeri/video', 'VideoController@index')->name('videos.index');

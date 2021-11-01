@@ -39,7 +39,6 @@
                 <a class="collapse-item" href="{{ route('admin.news.index') }}">Berita</a>
                 <a class="collapse-item" href="{{ route('admin.cultures.index') }}">Kebudayaan</a>
                 <a class="collapse-item" href="{{ route('admin.culinaries.index') }}">Kuliner</a>
-                <a class="collapse-item" href="{{ route('admin.tickets.index') }}">Tiket</a>
                 <a class="collapse-item" href="{{ route('admin.tours.index') }}">Wisata</a>
             </div>
         </div>

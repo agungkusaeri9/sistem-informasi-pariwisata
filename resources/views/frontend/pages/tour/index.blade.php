@@ -2,7 +2,7 @@
 @section('content')
 <header class="text-center" style="margin-bottom: -70px;background-image: url({{ $category->image() }})">
     <h1>
-        Budaya
+        Destinasi Wisata
     </h1>
 </header>    
 <section class="section-popular-content" id="popularContent">
@@ -15,7 +15,7 @@
                     <div class="travel-country">{{ $item->location }}</div>
                     <div class="travel-location">{{ $item->name }}</div>
                     <div class="travel-button mt-auto">
-                        <a href="{{ route('culture.show', $item->slug) }}"
+                        <a href="{{ route('tour.show', $item->slug) }}"
                             class="btn btn-travel-details px-4">
                             View Details
                         </a>

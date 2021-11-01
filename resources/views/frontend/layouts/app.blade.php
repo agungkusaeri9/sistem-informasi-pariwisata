@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> NOPROB</title>
+    <title>{{ $title ?? 'Home' }}</title>
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Assistant:200,300,400,600,700,800|Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
     {{-- <link href="{{ asset('assets/frontend/css/aos.css') }}" rel="stylesheet"> --}}
@@ -17,7 +17,7 @@
 
 <body>
     <!-- Navbar -->
-    @include('frontend.layouts.partials.navbar')
+    <x-Navbar></x-Navbar>
 
     @yield('content')
 

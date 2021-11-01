@@ -15,4 +15,13 @@ class GalleryController extends Controller
             'items' => $items
         ]);
     }
+
+    public function show($id)
+    {
+        $item = Gallery::findOrFail($id);
+        return view('frontend.pages.gallery.show',[
+            'title' => $item->name,
+            'item' => $item
+        ]);
+    }
 }
