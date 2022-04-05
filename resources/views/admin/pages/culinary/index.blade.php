@@ -23,6 +23,7 @@
                                 <th>Lokasi</th>
                                 <th>Deskripsi</th>
                                 <th>Skor</th>
+                                <th>Dilihat</th>
                                 <th class="text-center" style="width:80px">Aksi</th>
                             </tr>
                         </thead>
@@ -38,6 +39,7 @@
                                 <td>{{ $item->location }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>{{ $item->score($item->category_id,$item->id) }}</td>
+                                <td>{{ $item->visitor }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.culinaries.edit',$item->id) }}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
                                     <form action="{{ route('admin.culinaries.destroy',$item->id) }}" method="post" class="d-inline">

@@ -25,6 +25,7 @@ class EventController extends Controller
         {
             return redirect()->route('event.index');
         }
+        $item->increment('visitor');
         return view('frontend.pages.event.show',[
             'title' => $item->name,
             'item' => $item

@@ -25,6 +25,7 @@ class TourController extends Controller
         {
             return redirect()->route('tour.index');
         }
+        $item->increment('visitor');
         return view('frontend.pages.tour.show',[
             'title' => $item->name,
             'item' => $item

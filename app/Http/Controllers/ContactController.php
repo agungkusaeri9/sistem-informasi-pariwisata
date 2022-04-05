@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        $item = Setting::first();
+        $item->increment('visitor');
+    }
+
     public function index()
     {
         return view('frontend.pages.contact',[

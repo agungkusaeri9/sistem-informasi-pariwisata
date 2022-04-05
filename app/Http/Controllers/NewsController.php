@@ -25,6 +25,7 @@ class NewsController extends Controller
         {
             return redirect()->route('news.index');
         }
+        $item->increment('visitor');
         return view('frontend.pages.news.show',[
             'title' => $item->name,
             'item' => $item

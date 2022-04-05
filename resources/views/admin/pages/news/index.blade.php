@@ -18,6 +18,7 @@
                                 <th>Gambar</th>
                                 <th>Judul</th>
                                 <th>Dibuat</th>
+                                <th>Dilihat</th>
                                 <th class="text-center" style="width:80px">Aksi</th>
                             </tr>
                         </thead>
@@ -28,6 +29,7 @@
                                 <td><img src="{{ $item->image() }}" alt="" class="img-fluid" style="height: 80px;width:80px"></td>
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->created_at->translatedFormat('l, d F Y') }}</td>
+                                <td>{{ $item->visitor }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.news.edit', $item->id) }}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
                                     <form action="{{ route('admin.news.destroy',$item->id) }}" method="post" class="d-inline">

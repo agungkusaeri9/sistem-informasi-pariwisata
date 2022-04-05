@@ -2,7 +2,7 @@
 @section('content')
 <header class="text-center" style="margin-bottom: -70px;background-image: url({{ $category->image() }})">
     <h1>
-        Kebudayaan
+        {{ $category->name }}
     </h1>
 </header>    
 <section class="section-popular-content" id="popularContent">

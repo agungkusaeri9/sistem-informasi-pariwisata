@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Gallery;
 use App\Models\Inbox;
 use App\Models\News;
+use App\Models\Setting;
 use App\Models\Ticket;
 use App\Models\Tour;
 use App\Models\Video;
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $item = Setting::first();
+        $item->increment('visitor');
         $tours = Tour::latest()->limit(4)->get();
         $cultures = Culture::limit(4)->get();
         $culinaries = Culinary::limit(4)->get();

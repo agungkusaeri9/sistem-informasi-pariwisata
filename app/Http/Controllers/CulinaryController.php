@@ -25,6 +25,7 @@ class CulinaryController extends Controller
         {
             return redirect()->route('culinary.index');
         }
+        $item->increment('visitor');
         return view('frontend.pages.culinary.show',[
             'title' => $item->name,
             'item' => $item

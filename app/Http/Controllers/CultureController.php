@@ -25,6 +25,7 @@ class CultureController extends Controller
         {
             return redirect()->route('culture.index');
         }
+        $item->increment('visitor');
         return view('frontend.pages.culture.show',[
             'title' => $item->name,
             'item' => $item

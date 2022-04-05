@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
+    public function __construct()
+    {
+        $item = Setting::first();
+        $item->increment('visitor');
+    }
+
     public function index()
     {
         $count = [

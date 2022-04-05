@@ -92,6 +92,10 @@
                                 </div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="dilihat">Dilihat</label>
+                            <input type="number" value="{{ $item->visitor }}" disabled class="form-control">
+                        </div>
                         <div class="form-group form-row">
                             <div class="col-12">
                                 <label for="">Logo</label>

@@ -175,7 +175,8 @@
         </div>
     </section>
 
-    <section class="section section-testimonial-content" style="margin-top: 20px">
+   @if ($latest_video)
+   <section class="section section-testimonial-content" style="margin-top: 20px">
         <div class="container">
             <div class="section-populer-travel row justify-content-center">
                 <div class="col-md-4">
@@ -191,6 +192,7 @@
             </div>
         </div>
     </section>
+   @endif
 </main>
 @endsection
 @push('styles')
