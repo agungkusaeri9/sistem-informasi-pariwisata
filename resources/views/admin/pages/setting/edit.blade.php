@@ -40,12 +40,11 @@
                         </div>
                         <div class="form-group">
                             <label for="map">Map</label>
-                            <textarea name="map" id="map" cols="30" rows="3" class="form-control @error('map') is-invalid @enderror">{{ $item->map ?? old('map') }}</textarea>
-                            @error('map')
-                                <div class="is-invalid">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <div id="peta" style="height:400px">
+
+                            </div>
+                            <input type="text" name="lat" hidden id="lat">
+                            <input type="text" name="lng" hidden id="lng">
                         </div>
                         <div class="form-group">
                             <label for="phone_number">Nomor Hp</label>
@@ -123,10 +122,47 @@
 </div>
 @endsection
 @push('styles')
-<!-- Toastr -->
 <link rel="stylesheet" href="{{ asset('assets/sbadmin2/toastr/toastr.min.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
 @endpush
 @push('scripts')
 <script src="{{ asset('assets/sbadmin2/toastr/toastr.min.js') }}"></script>
 @include('admin.layouts.partials.toast')
+<script>
+    $(function(){
+        var mapOptions = {
+            center: [4.6819643,96.518805],
+            zoom: 9
+        }
+
+        var map = L.map('peta',mapOptions);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            accessToken: '{{ $key }}'
+        }).addTo(map);
+
+
+        var popup = L.popup();
+        var marker = L.marker(['{{ $item->map->latitude ?? 0 }}', '{{ $item->map->longtitude ?? 0 }}']).addTo(map);
+        map.on('click', function(e){
+            map.removeLayer(marker);
+            L.marker([0,0]).addTo(map);
+            var lat = e.latlng.lat;
+            var lon = e.latlng.lng;
+            marker = L.marker([lat, lon]).addTo(map);
+            marker.bindPopup(lat + ',' + lon).openPopup();
+            $('#lat').val(lat);
+            $('#lng').val(lon);
+        })
+    })
+</script>
 @endpush

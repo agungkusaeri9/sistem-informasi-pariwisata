@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Culture;
+use App\Models\Map;
 use Illuminate\Http\Request;
 
 class CultureController extends Controller
@@ -28,7 +29,8 @@ class CultureController extends Controller
         $item->increment('visitor');
         return view('frontend.pages.culture.show',[
             'title' => $item->name,
-            'item' => $item
+            'item' => $item,
+            'key' => Map::keyGmaps()
         ]);
     }
 }

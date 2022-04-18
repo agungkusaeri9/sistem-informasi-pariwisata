@@ -18,4 +18,8 @@ class Setting extends Model
             return "";
         }
     }
+    public function map()
+    {
+        return $this->hasOne(Map::class,'id','map_id');
+    }
 }

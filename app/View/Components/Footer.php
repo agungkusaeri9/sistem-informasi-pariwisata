@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use App\Models\Category;
+use App\Models\Map;
 use App\Models\Setting;
 use Illuminate\View\Component;
 
@@ -28,7 +29,8 @@ class Footer extends Component
         $categories = Category::orderBy('name','ASC')->get();
         return view('components.footer',[
             'categories' => $categories,
-            'setting' => Setting::first()
+            'setting' => Setting::first(),
+            'key' => Map::keyGmaps()
         ]);
     }
 }

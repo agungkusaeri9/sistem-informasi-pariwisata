@@ -38,6 +38,10 @@
                         </div>
                         <h2>Deskripsi</h2>
                         <p>{{ $item->description }}</p>
+                        <h2 class="mt-3 mb-2">Lokasi</h2>
+                        <div id="map">
+
+                        </div>
                         <div class="pt-5 mt-5">
                             <h3 class="mb-5">{{ $item->countComment($item->category_id,$item->id) }} Comments</h3>
                             @if ($item->countComment($item->category_id,$item->id) < 1)
@@ -136,10 +140,38 @@
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/frontend/xzoom/xzoom.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/frontend/toastr/toastr.min.css') }}">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style>
+      #map{
+        height: 400px;
+      }
+    </style>
 @endpush
 @push('scripts')
 <script src="{{ asset('assets/frontend/xzoom/xzoom.min.js') }}"></script>
 <script src="{{ asset('assets/frontend/toastr/toastr.min.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ $key }}&callback=initMap" defer></script>
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        const uluru = { lat: -25.344, lng: 131.031 };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: uluru,
+          zoom:13
+        });
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+        });
+      }
+
+      window.initMap = initMap;
+
+    </script>
 <script>
     $(document).ready(function() {
       $('.xzoom, .xzoom-gallery').xzoom({

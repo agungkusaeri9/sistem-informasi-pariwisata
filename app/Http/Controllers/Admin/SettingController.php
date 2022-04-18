@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Map;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,8 @@ class SettingController extends Controller
     {
         return view('admin.pages.setting.edit',[
             'title' => 'Pengaturan Situs',
-            'item' => $this->setting
+            'item' => $this->setting,
+            'key' => Map::keyMapbox()
         ]);
     }
 
@@ -34,6 +36,26 @@ class SettingController extends Controller
         ]);
 
         $data = request()->all();
+        if(request('lat') && request('lng'))
+        {
+            if($this->setting->map)
+            {
+                $map = $this->setting->map;
+            }else{
+                $map = New Map;
+            }
+            $map->latitude = request('lat');
+            $map->longtitude = request('lng');
+            $map->save();
+            $data['map_id'] = $map->id;
+        }else{
+            if($this->setting->map_id)
+            {
+                $data['map_id'] = $this->setting->map_id;
+            }else{
+                $data['map_id'] = NULL;
+            }
+        }
         if(request()->file('logo'))
         {
             if($this->setting->logo !== NULL)

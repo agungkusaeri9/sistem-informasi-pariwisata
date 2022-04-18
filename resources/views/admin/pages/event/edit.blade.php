@@ -56,6 +56,11 @@
                                 </div>
                             @enderror
                         </div>
+                        <div id="peta" style="height:400px">
+
+                        </div>
+                        <input type="text" name="lat" hidden id="lat">
+                        <input type="text" name="lng" hidden id="lng">
                         <div class="form-group form-row">
                             <div class="col-12">
                                 <label for="">Gambar</label>
@@ -83,3 +88,45 @@
     </div>
 </div>
 @endsection
+@push('styles')
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+@endpush
+@push('scripts')
+<script>
+    $(function(){
+        var mapOptions = {
+            center: [4.6819643,96.518805],
+            zoom: 9
+        }
+
+        var map = L.map('peta',mapOptions);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            accessToken: '{{ $key }}'
+        }).addTo(map);
+
+
+        var popup = L.popup();
+        var marker = L.marker(['{{ $item->map->latitude }}', '{{ $item->map->longtitude }}']).addTo(map);
+        map.on('click', function(e){
+            map.removeLayer(marker);
+            L.marker([0,0]).addTo(map);
+            var lat = e.latlng.lat;
+            var lon = e.latlng.lng;
+            marker = L.marker([lat, lon]).addTo(map);
+            marker.bindPopup(lat + ',' + lon).openPopup();
+            $('#lat').val(lat);
+            $('#lng').val(lon);
+        })
+    })
+</script>
+@endpush

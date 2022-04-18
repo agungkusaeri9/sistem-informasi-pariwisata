@@ -45,4 +45,8 @@ class Culture extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function map()
+    {
+        return $this->hasOne(Map::class,'id','map_id');
+    }
 }

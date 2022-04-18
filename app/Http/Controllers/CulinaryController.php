@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Culinary;
+use App\Models\Map;
 use Illuminate\Http\Request;
 
 class CulinaryController extends Controller
@@ -28,7 +29,8 @@ class CulinaryController extends Controller
         $item->increment('visitor');
         return view('frontend.pages.culinary.show',[
             'title' => $item->name,
-            'item' => $item
+            'item' => $item,
+            'key' => Map::keyGmaps()
         ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Map;
 use App\Models\Tour;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,8 @@ class TourController extends Controller
         $item->increment('visitor');
         return view('frontend.pages.tour.show',[
             'title' => $item->name,
-            'item' => $item
+            'item' => $item,
+            'key' => Map::keyGmaps()
         ]);
     }
 }

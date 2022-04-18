@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\Map;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -28,7 +29,8 @@ class EventController extends Controller
         $item->increment('visitor');
         return view('frontend.pages.event.show',[
             'title' => $item->name,
-            'item' => $item
+            'item' => $item,
+            'key' => Map::keyGmaps()
         ]);
     }
 }

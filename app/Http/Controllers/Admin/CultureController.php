@@ -4,11 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Culture;
+use App\Models\Map;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CultureController extends Controller
 {
+    public function __construct()
+    {
+        $this->key = Map::keyMapbox();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +37,8 @@ class CultureController extends Controller
     public function create()
     {
         return view('admin.pages.culture.create',[
-            'title' => 'Tambah Kebudayaan'
+            'title' => 'Tambah Kebudayaan',
+            'key' => $this->key
         ]);
     }
 
@@ -52,6 +58,15 @@ class CultureController extends Controller
         ]);
 
         $data = request()->all();
+        $data = request()->all();
+        if(request('lat') && request('lng'))
+        {
+            $map = New Map;
+            $map->latitude = request('lat');
+            $map->longtitude = request('lng');
+            $map->save();
+            $data['map_id'] = $map->id;
+        }
         $data['slug'] = \Str::slug(request('name'));
         $data['image'] = request()->file('image')->store('culinary','public');
         Culture::create($data);
@@ -77,10 +92,11 @@ class CultureController extends Controller
      */
     public function edit($id)
     {
-        $item = Culture::findOrFail($id);
+        $item = Culture::with('map')->findOrFail($id);
         return view('admin.pages.culture.edit',[
             'title' => 'Edit Kebudayaan',
-            'item' => $item
+            'item' => $item,
+            'key' => $this->key
         ]);
     }
 
@@ -102,6 +118,15 @@ class CultureController extends Controller
 
         $data = request()->all();
         $item = Culture::findOrFail($id);
+        if(request('lat') && request('lng'))
+        {
+            $map = $item->map;
+            $map->latitude = request('lat');
+            $map->longtitude = request('lng');
+            $map->save();
+        }else{
+            $data['map_id'] = $item->map_id;
+        }
         $data['slug'] = \Str::slug(request('name'));
         if(request()->file('image'))
         {
@@ -122,7 +147,11 @@ class CultureController extends Controller
      */
     public function destroy($id)
     {
-        $item = Culture::findOrFail($id);
+        $item = Culture::with('map')->findOrFail($id);
+        if($item->map_id)
+        {
+            Map::find($item->map_id)->delete();
+        }
         Storage::disk('public')->delete($item->image);
         $item->delete();
         return redirect()->route('admin.cultures.index')->with('success','Kebudayaan berhasil dihapus');

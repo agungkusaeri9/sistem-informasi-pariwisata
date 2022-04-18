@@ -4,11 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Culinary;
+use App\Models\Map;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CulinaryController extends Controller
 {
+    public function __construct()
+    {
+        $this->key = Map::keyMapbox();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +37,8 @@ class CulinaryController extends Controller
     public function create()
     {
         return view('admin.pages.culinary.create',[
-            'title' => 'Tambah Kuliner'
+            'title' => 'Tambah Kuliner',
+            'key' => $this->key
         ]);
     }
 
@@ -55,6 +61,14 @@ class CulinaryController extends Controller
         ]);
 
         $data = request()->all();
+        if(request('lat') && request('lng'))
+        {
+            $map = New Map;
+            $map->latitude = request('lat');
+            $map->longtitude = request('lng');
+            $map->save();
+            $data['map_id'] = $map->id;
+        }
         $data['slug'] = \Str::slug(request('name'));
         $data['image'] = request()->file('image')->store('culinary','public');
         Culinary::create($data);
@@ -83,7 +97,8 @@ class CulinaryController extends Controller
         $item = Culinary::findOrFail($id);
         return view('admin.pages.culinary.edit',[
             'title' => 'Edit Kuliner',
-            'item' => $item
+            'item' => $item,
+            'key' => $this->key
         ]);
     }
 
@@ -108,6 +123,15 @@ class CulinaryController extends Controller
 
         $data = request()->all();
         $item = Culinary::findOrFail($id);
+        if(request('lat') && request('lng'))
+        {
+            $map = $item->map;
+            $map->latitude = request('lat');
+            $map->longtitude = request('lng');
+            $map->save();
+        }else{
+            $data['map_id'] = $item->map_id;
+        }
         $data['slug'] = \Str::slug(request('name'));
         if(request()->file('image'))
         {
@@ -128,7 +152,11 @@ class CulinaryController extends Controller
      */
     public function destroy($id)
     {
-        $item = Culinary::findOrFail($id);
+        $item = Culinary::with('map')->findOrFail($id);
+        if($item->map_id)
+        {
+            Map::find($item->map_id)->delete();
+        }
         Storage::disk('public')->delete($item->image);
         $item->delete();
         return redirect()->route('admin.culinaries.index')->with('success','Kuliner berhasil dihapus');

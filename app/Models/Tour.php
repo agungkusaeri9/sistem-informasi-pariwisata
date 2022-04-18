@@ -13,6 +13,11 @@ class Tour extends Model
         return asset('storage/' . $this->image);
     }
 
+    public function map()
+    {
+        return $this->hasOne(Map::class,'id','map_id');
+    }
+
     // public function evaluations()
     // {
     //     return $this->hasMany(Evaluation::class);

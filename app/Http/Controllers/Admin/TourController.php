@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Map;
 use App\Models\Tour;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class TourController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->key = Map::keyMapbox();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +39,8 @@ class TourController extends Controller
     public function create()
     {
         return view('admin.pages.tour.create',[
-            'title' => 'Tambah Wisata'
+            'title' => 'Tambah Wisata',
+            'key' => $this->key
         ]);
     }
 
@@ -52,6 +60,14 @@ class TourController extends Controller
         ]);
 
         $data = request()->all();
+        if(request('lat') && request('lng'))
+        {
+            $map = New Map;
+            $map->latitude = request('lat');
+            $map->longtitude = request('lng');
+            $map->save();
+            $data['map_id'] = $map->id;
+        }
         $data['slug'] = \Str::slug(request('name'));
         $data['image'] = request()->file('image')->store('culinary','public');
         Tour::create($data);
@@ -77,10 +93,11 @@ class TourController extends Controller
      */
     public function edit($id)
     {
-        $item = Tour::findOrFail($id);
+        $item = Tour::with('map')->findOrFail($id);
         return view('admin.pages.tour.edit',[
             'title' => 'Edit Wisata',
-            'item' => $item
+            'item' => $item,
+            'key' => $this->key
         ]);
     }
 
@@ -102,6 +119,15 @@ class TourController extends Controller
 
         $data = request()->all();
         $item = Tour::findOrFail($id);
+        if(request('lat') && request('lng'))
+        {
+            $map = $item->map;
+            $map->latitude = request('lat');
+            $map->longtitude = request('lng');
+            $map->save();
+        }else{
+            $data['map_id'] = $item->map_id;
+        }
         $data['slug'] = \Str::slug(request('name'));
         if(request()->file('image'))
         {
@@ -122,7 +148,11 @@ class TourController extends Controller
      */
     public function destroy($id)
     {
-        $item = Tour::findOrFail($id);
+        $item = Tour::with('map')->findOrFail($id);
+        if($item->map_id)
+        {
+            Map::find($item->map_id)->delete();
+        }
         Storage::disk('public')->delete($item->image);
         $item->delete();
         return redirect()->route('admin.tours.index')->with('success','Wisata berhasil dihapus');
